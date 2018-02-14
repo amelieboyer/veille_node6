@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+ <meta charset="UTF-8">
+ <title>Membres</title>
+ <link rel="stylesheet" type="text/css" href="css/style.css">
+<link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Questrial" rel="stylesheet">
+</head>
+<body>
+	<h1>Exercice 6</h1>
+ 		<table class="tableau">
+
+ 			<% let noLigne = 0 %>
+ 			<% for(element of adresses) {%>
+			 
+				 <% if (noLigne==0) {%>
+				
+				 	<tr>
+
+	 					<% noLigne++
+	 			
+	 							for (p in element){ %>
+
+	 									<th><%= p %></th>
+	 							<% } %>
+	 			
+	 					<td>
+	 						<form action = "http://127.0.0.1:8081/ajouter" method = "GET">
+	 							<input type="submit" value = "Ajouter">
+	 						</form>
+	 					</td>
+	 				</tr>
+
+	 			<% } %>
+
+ 			<% } %>
+
+
+
+
+ 			
+ 			<% adresses.forEach(elm => {%>
+
+
+ 			<tr>
+ 				<td contenteditable="true"><%= elm.prenom %></td>
+ 				<td contenteditable="true"><%= elm.nom %></td>
+ 				<td contenteditable="true"><%= elm.telephone %></td>
+ 				<td contenteditable="true"><%= elm.courriel %></td>
+ 				<form action = "http://127.0.0.1:8081/modifier" method = "GET">
+ 					<td><input type="submit" value = "Modifier"></td>
+ 				</form>	
+ 				<form action = "http://127.0.0.1:8081/supprimer/<%= elm._id %>" method = "GET">
+ 					<td><input type="submit" value = "Supprimer"></td>
+ 				</form>
+ 			</tr>
+ 			<% }) %>
+ 		</table>
+</body>
+</html>
+
+
+
+	 <form action = "http://127.0.0.1:8081/ajouter" method = "GET">
+		 <label>Prénom: <input type = "text" name = "prenom"><br></label>
+ 		 <label>Nom: <input type = "text" name = "nom"><br></label>
+ 		 <label>Telephone:<input type = "text" name = "telephone"><br></label>
+ 		<label>Courriel: <input type = "text" name="courriel"></label>
+ 		<input type="submit" value = "Submit">
+ 	  </form>
+
+ </body>
+</html>
