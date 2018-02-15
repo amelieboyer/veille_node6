@@ -21,13 +21,10 @@
 	 			
 	 							for (p in element){ %>
 
-	 									<th><%= p %></th>
+	 									<th><a href=http://localhost:8081/trier/<%=p %>/asc><%= p %></a></th>
 	 							<% } %>
-	 			
 	 					<td>
-	 						<form action = "http://127.0.0.1:8081/ajouter" method = "GET">
-	 							<input type="submit" value = "Ajouter">
-	 						</form>
+	 						<a href='http://localhost:8081/ajouter'>Ajouter</a>
 	 					</td>
 	 				</tr>
 
@@ -43,16 +40,17 @@
 
 
  			<tr>
+ 				<td contenteditable="true"><%= elm._id %></td>
  				<td contenteditable="true"><%= elm.prenom %></td>
  				<td contenteditable="true"><%= elm.nom %></td>
  				<td contenteditable="true"><%= elm.telephone %></td>
  				<td contenteditable="true"><%= elm.courriel %></td>
- 				<form action = "http://127.0.0.1:8081/modifier" method = "GET">
- 					<td><input type="submit" value = "Modifier"></td>
- 				</form>	
- 				<form action = "http://127.0.0.1:8081/supprimer/<%= elm._id %>" method = "GET">
- 					<td><input type="submit" value = "Supprimer"></td>
- 				</form>
+ 				<td>
+ 					<a href='http://localhost:8081/modifier'>Modifier</a>
+ 				</td>
+ 				<td>
+ 					<a href='http://localhost:8081/supprimer/<%= elm._id %>'>Supprimer</a>
+ 				</td>
  			</tr>
  			<% }) %>
  		</table>
@@ -65,9 +63,8 @@
 		 <label>Prénom: <input type = "text" name = "prenom"><br></label>
  		 <label>Nom: <input type = "text" name = "nom"><br></label>
  		 <label>Telephone:<input type = "text" name = "telephone"><br></label>
- 		<label>Courriel: <input type = "text" name="courriel"></label>
- 		<input type="submit" value = "Submit">
+ 		<label>Courriel: <input type = "text" name="courriel"><br></label>
+ 		<input type="submit" value = "Ajouter un membre">
  	  </form>
-
  </body>
 </html>
