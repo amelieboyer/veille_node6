@@ -5,6 +5,10 @@ h1 {
   text-align: center;
   font-family: 'Permanent Marker';
 }
+h2 {
+  text-align: center;
+  font-family: 'Questrial';
+}
 .tableau {
   margin: 0 auto;
   border-collapse: collapse;
