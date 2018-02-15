@@ -6,8 +6,10 @@ h1 {
   font-family: 'Permanent Marker';
 }
 .tableau {
+  margin: 0 auto;
   border-collapse: collapse;
   background-color: #ffffff;
+  width: 300px;
 }
 .tableau td,
 .tableau th {
