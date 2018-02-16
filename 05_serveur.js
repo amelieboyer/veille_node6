@@ -4,6 +4,7 @@ const app = express();
 const ObjectID = require('mongodb').ObjectID;
 app.use(express.static('public'));
 const bodyParser= require('body-parser')
+app.use(bodyParser.urlencoded({extended: true}))
 const MongoClient = require('mongodb').MongoClient // le pilote MongoDB
 
 
@@ -42,7 +43,8 @@ app.set('view engine', 'ejs'); // générateur de template
 app.get('/', (req, res) => {
 
  console.log('accueil')
- res.end('<h1>Accueil</h1>')
+ //res.end('<h1>Accueil</h1>')
+ res.render('accueil.ejs')
 
 })
 
@@ -92,8 +94,16 @@ app.get('/trier/:cle/:ordre', (req, res) => {
 
  	let cursor = db.collection('adresse').find().sort(cle,ordre).toArray(function(err, resultat){
 
- 		ordre = (req.params.ordre == 'des' ? -1 : 1)
- 		res.render('membres.ejs', {adresses: resultat, cle, ordre})
+ 		if(ordre == 1){
+
+ 			ordre = 'dsc';
+ 		}
+ 		else {
+
+ 			ordre = 'asc';
+ 		}
+
+ 		res.render('membres.ejs', {adresses: resultat, test:ordre})
 
  
  })
@@ -102,37 +112,28 @@ app.get('/trier/:cle/:ordre', (req, res) => {
 
 ////////////////////////////////////////////////////////////MODIFIER
 app.post('/modifier', (req, res) => {
-	console.log('req.body' + req.body)
- 	if (req.body['_id'] != __________)
- 	{ 
+	console.log(req)
+ 	
  		console.log('sauvegarde') 
  		var oModif = {
  			"_id": ObjectID(req.body['_id']), 
- 			nom: req.body._____,
- 			prenom:req.body.______, 
- 			telephone:req.body._______
+ 			nom: req.body.nom,
+ 			prenom:req.body.prenom, 
+ 			telephone:req.body.telephone,
+ 			courriel:req.body.courriel
+
  		}
+
 
  		var util = require("util");
  		console.log('util = ' + util.inspect(oModif));
- 	}
-
- 	else
  	
- 	{
- 		console.log('insert')
- 		console.log(req.body)
- 		var oModif = {
- 			nom: req.body.______,
- 			prenom:req.body.______, 
- 			telephone:req.body._______
- 		}
- 	}
+
 
  	db.collection('adresse').save(oModif, (err, result) => {
  	if (err) return console.log(err)
  	console.log('sauvegarder dans la BD')
- 	res.redirect('/list')
+ 	res.redirect('/membres')
  })
 
  })
