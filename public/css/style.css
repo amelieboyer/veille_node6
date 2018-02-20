@@ -12,6 +12,9 @@ h2 {
 nav ul {
   list-style-type: none;
 }
+nav ul li {
+  padding: 5px;
+}
 .tableau {
   margin: 0 auto;
   border-collapse: collapse;
